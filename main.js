@@ -1,7 +1,6 @@
 const formulario = document.getElementById('formulario');
 
 let listaTarefa = JSON.parse(localStorage.getItem('tarefas')) || []
-// console.log(listaTarefa)
 
 if (listaTarefa) {
     exibirNaTela()
@@ -34,9 +33,36 @@ function exibirNaTela() {
 function criarElemento(tarefa) {
     const itemTarefa = document.createElement('div')
     itemTarefa.classList.add('container-tarefa')
+    itemTarefa.id = listaTarefa.length
     const text = document.createElement('p')   
     text.innerHTML = tarefa
     itemTarefa.appendChild(text)
-
+    const btnRemover = document.createElement('button')
+    btnRemover.id = 'remover'
+    btnRemover.textContent = 'X'
+    itemTarefa.appendChild(btnRemover)
+    
+    btnRemover.addEventListener('click', () => {
+        removerItem(tarefa);
+    })
+    
     return itemTarefa
 }
+
+function removerItem(tarefa) {
+    const listaRemovida = listaTarefa.filter(tarefaRemover => tarefaRemover !== tarefa)
+    listaTarefa = listaRemovida
+    localStorage.setItem('tarefas', JSON.stringify(listaTarefa))
+    exibirNaTela()
+}
+
+const btnApagar = document.getElementById('apagar').addEventListener('click', () => {
+    if(localStorage.getItem('tarefas') != null) {
+        localStorage.removeItem('tarefas')
+        listaTarefa = []
+        exibirNaTela()
+    }
+    else {
+        alert('Nao existe nenhuma lista para ser apagada!')
+    }
+})

@@ -27,7 +27,7 @@ html {
 
     input {
         border: none;
-        border-radius: 20px;
+        border-radius: 20px 0 0 20px;
         transition: var(--transicao);
         box-shadow: 2px 2px 10px rgb(0, 0, 0, 0.5);
     }
@@ -35,7 +35,7 @@ html {
 
 #tarefa {
     padding: 10px 15px;
-    width: 500px;
+    width: 400px;
 }
 
 #tarefa:focus {
@@ -44,14 +44,19 @@ html {
 
 .btn {
     border: none;
-    border-radius: 20px;
+    border-radius: 0 20px 20px 0;
     transition: var(--transicao);
     box-shadow: 2px 2px 10px rgb(0, 0, 0, 0.5);
     padding: 10px 20px;
+    margin-left: -2px;
 }
 
 .btn:hover {
     transform: scale(1.10);
+}
+
+#apagar {
+    border-radius: 20px;
 }
 
 /* Tarefa */
@@ -69,8 +74,27 @@ html {
     background-color: rgb(0, 0, 0, 0.3);
     width: 30%;
     padding: 20px 30px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     p {
         font-size: 1.5rem;
+    }
+
+    button {
+        border: 1px solid black;
+        padding: .5rem .8rem;
+        border-radius: 50%;
+        background-color: transparent;
+        color: black;
+        transition: .2s;
+    }
+
+    button:hover {
+        scale: 1.05;
+        background-color: white;
+        border: 1px solid white;
     }
 }
